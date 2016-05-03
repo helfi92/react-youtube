@@ -1,19 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import YTSearch from 'youtube-api-search';
 
 import SearchBar from './components/search_bar';
 
 const API_KEY = 'AIzaSyBNwt9TaGWmq2gcbxpycyPK5KJHnOMVVl4';
 
+
+
+
+
 //	Create a new component, This component should produce
 //	some HTML
-const App = function(){
-	return (
-		<div>
-			<SearchBar />
+class App extends Component {
+	constructor(props) {
+		super(props);
 
-		</div>
-	);
+		this.state = {
+			videos: []
+		};
+
+		YTSearch({
+			key: API_KEY,
+			term: 'surfboard'
+		}, (data) => {
+			this.setState({
+				videos
+				//videos: videos
+			});
+		});
+	}
+	render(){
+		return (
+			<div>
+				<SearchBar />
+
+			</div>
+		);
+	}
+	
 };
 
 //	Take this component's generated HTML and put it 
